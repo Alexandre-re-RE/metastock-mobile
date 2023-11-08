@@ -13,7 +13,7 @@ class ListeProduitPage extends StatelessWidget {
     return CustomWidgetBlackBackGround(
         widget: BlocProvider(
       create: (context) => ListeProduitCubit(),
-      child: ListeProduitView(),
+      child: const ListeProduitView(),
     ));
   }
 }

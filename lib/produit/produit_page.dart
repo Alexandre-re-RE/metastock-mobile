@@ -8,6 +8,6 @@ class ProduitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomWidgetBlackBackGround(widget: ProduitView());
+    return const CustomWidgetBlackBackGround(widget: ProduitView());
   }
 }

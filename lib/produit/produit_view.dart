@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:metastock/const/color.dart';
 
-import '../CustomWidget/elevatedButtonCustom.dart';
+import '../CustomWidget/elevated_button_custom.dart';
 
 class ProduitView extends StatelessWidget {
   const ProduitView({Key? key}) : super(key: key);
@@ -95,7 +95,7 @@ class ProduitView extends StatelessWidget {
                   ),
                 ],
               ),
-              ElevatedButtonCustom(textButton: "Comfirmed"),
+              const ElevatedButtonCustom(textButton: "Comfirmed"),
             ],
           ),
         ),

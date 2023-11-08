@@ -7,7 +7,7 @@ import '../CustomWidget/mouvement_card_custom_widget.dart';
 import 'cubit/liste_produit_cubit.dart';
 
 class ListeProduitView extends StatelessWidget {
-  ListeProduitView({Key? key}) : super(key: key);
+  const ListeProduitView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ListeProduitView extends StatelessWidget {
                 inactiveFgColor: Colors.white,
                 initialLabelIndex: 0,
                 totalSwitches: 2,
-                labels: ['Liste des Produit', 'Liste des mouvement'],
+                labels: const ['Liste des Produit', 'Liste des mouvement'],
                 radiusStyle: true,
                 onToggle: (index) {
                   cubitRead.changeVisibility(index: index ?? 1);

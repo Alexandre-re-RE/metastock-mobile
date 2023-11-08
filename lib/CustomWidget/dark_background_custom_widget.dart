@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomWidgetBlackBackGround extends StatelessWidget {
   const CustomWidgetBlackBackGround({
+    super.key,
     required this.widget,
   });
 

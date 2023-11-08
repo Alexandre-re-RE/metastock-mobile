@@ -17,8 +17,8 @@ class ElevatedButtonCustom extends StatelessWidget {
         ),
         fixedSize: const Size(150, 60),
       ),
-      child:
-          Text(textButton, style: TextStyle(color: Colors.white, fontSize: 16)),
+      child: Text(textButton,
+          style: const TextStyle(color: Colors.white, fontSize: 16)),
     );
   }
 }

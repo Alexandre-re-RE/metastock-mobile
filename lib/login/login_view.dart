@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:metastock/CustomWidget/elevatedButtonCustom.dart';
+import 'package:metastock/CustomWidget/elevated_button_custom.dart';
 
 import '../CustomWidget/text_field_custom.dart';
 import '../const/color.dart';
@@ -9,9 +9,9 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return const Stack(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +44,7 @@ class LoginView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.0),
                 child: ElevatedButtonCustom(textButton: "Connexion"),
               ),
             ],
