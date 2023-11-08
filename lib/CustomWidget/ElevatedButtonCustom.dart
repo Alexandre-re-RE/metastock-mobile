@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ElevatedButtonCustom extends StatelessWidget {
   ElevatedButtonCustom({super.key, required this.textButton});
 
-  final String textButton;
+  String textButton;
 
   @override
   Widget build(BuildContext context) {
