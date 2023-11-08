@@ -7,19 +7,19 @@ part of 'account.dart';
 // **************************************************************************
 
 Account _$AccountFromJson(Map<String, dynamic> json) => Account(
-      json['firstname'] as String,
-      json['lastname'] as String,
-      json['matricule'] as String,
+      json['firstname'] as String?,
+      json['lastname'] as String?,
+      json['matricule'] as String?,
       json['archive'] as bool,
       json['id'] as String,
       json['role'] as String,
     );
 
 Map<String, dynamic> _$AccountToJson(Account instance) => <String, dynamic>{
-      'archive': instance.archive,
       'id': instance.id,
+      'archive': instance.archive,
+      'role': instance.role,
       'firstname': instance.firstname,
       'lastname': instance.lastname,
       'matricule': instance.matricule,
-      'role': instance.role,
     };

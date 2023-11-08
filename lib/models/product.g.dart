@@ -10,11 +10,11 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       json['archive'] as bool,
       json['id'] as int,
       json['stock'] as int,
-      json['description'] as String,
-      json['name'] as String,
-      json['picture'] as String,
-      (json['unitprice'] as num).toDouble(),
-      json['threshold'] as int,
+      json['description'] as String?,
+      json['name'] as String?,
+      json['picture'] as String?,
+      (json['unitPrice'] as num?)?.toDouble(),
+      json['threshold'] as int?,
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -25,5 +25,5 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'description': instance.description,
       'name': instance.name,
       'picture': instance.picture,
-      'unitprice': instance.unitprice,
+      'unitPrice': instance.unitprice,
     };
