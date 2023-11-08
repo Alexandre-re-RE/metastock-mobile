@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:metastock/CustomWidget/elevatedButtonCustom.dart';
 
-import '../CustomWidget/TextFieldCustom.dart';
+import '../CustomWidget/text_field_custom.dart';
 import '../const/color.dart';
 
 class LoginView extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metastock/const/color.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-import '../CustomWidget/MouvementCardCustomWidget.dart';
+import '../CustomWidget/mouvement_card_custom_widget.dart';
 import 'cubit/liste_produit_cubit.dart';
 
 class ListeProduitView extends StatelessWidget {
