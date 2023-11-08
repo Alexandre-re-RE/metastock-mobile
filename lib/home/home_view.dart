@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:metastock/const/color.dart';
 
-import '../CustomWidget/ElevatedButtonCustom.dart';
+import '../CustomWidget/elevatedButtonCustom.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);

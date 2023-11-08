@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:metastock/CustomWidget/ElevatedButtonCustom.dart';
+import 'package:metastock/CustomWidget/elevatedButtonCustom.dart';
 
 import '../CustomWidget/TextFieldCustom.dart';
 import '../const/color.dart';
