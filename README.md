@@ -1,6 +1,6 @@
 # metastock
 
-A new Flutter project.
+metastock flutter's project
 
 ## Getting Started
 

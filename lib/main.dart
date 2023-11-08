@@ -1,4 +1,6 @@
-import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:metastock/const/color.dart';
+import 'package:metastock/listeProduit/liste_produit_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:metastock/services/account_service.dart';
@@ -24,9 +26,25 @@ class MyApp extends StatelessWidget {
       navigatorKey: Constantes.navigatorKey,
       title: 'Metastock',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: Scaffold(
+        appBar: AppBar(toolbarHeight: 20, backgroundColor: couleurPrincipale),
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/image/background.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child:
+              // const HomePage(),
+              // const LoginPage(),
+              const ListeProduitPage(),
+        ),
+      ),
     );
   }
 }
@@ -49,17 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MetaStock"),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              AccountService service = AccountService();
-              await service.login(
-                  username: "logistician", password: "logistician");
-            },
-            icon: Icon(Icons.login),
-          )
-        ],
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
       ),
       body: Builder(builder: (BuildContext contex) {
         if (AuthUtils.isAuth()) {
