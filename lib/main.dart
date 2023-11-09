@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:metastock/const/color.dart';
-
-import 'listeProduit/liste_produit_page.dart';
+import 'package:metastock/produit/produit_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,8 +31,8 @@ class MyApp extends StatelessWidget {
           child:
               // const HomePage(),
               // const LoginPage(),
-              const ListeProduitPage(),
-          //const ProduitPage(),
+              //const ListeProduitPage(),
+              const ProduitPage(),
         ),
       ),
     );
