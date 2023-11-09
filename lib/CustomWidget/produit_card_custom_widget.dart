@@ -28,28 +28,31 @@ class ProduitCardCustomWidget extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Column(
-              children: [
-                const Image(
-                  image: AssetImage("assets/image/metastock.png"),
-                  height: 100,
-                ),
-                Text("Stock : ${product.stock} ", style: styleSmall),
-                Text("Price : ", style: styleSmall),
-                Text("${product.uniprice}\$", style: styleSmall),
-              ],
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Flexible(
-              flex: 1,
-              child: Text(
-                product.name,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  const Image(
+                    image: AssetImage("assets/image/metastock.png"),
+                    height: 100,
+                  ),
+                  Text("Stock : ${product.stock} ", style: styleSmall),
+                  Text("Price : ", style: styleSmall),
+                  Text("${product.uniprice}\$", style: styleSmall),
+                ],
               ),
-            )
-          ]),
+              const SizedBox(
+                width: 5,
+              ),
+              Flexible(
+                flex: 1,
+                child: Text(
+                  product.name,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
