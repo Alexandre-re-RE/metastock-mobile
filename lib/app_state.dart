@@ -1,10 +1,31 @@
 part of 'app_cubit.dart';
 
-abstract class AppState extends Equatable {
-  const AppState();
-}
+class AppState extends Equatable {
+  const AppState({
+    this.routeStages = RouteStages.HomePage,
+    this.product,
+    this.token,
+  });
 
-class AppInitial extends AppState {
+  final RouteStages routeStages;
+  final Product? product;
+  final Token? token;
+
+  AppState copyWith({
+    Token? token,
+    RouteStages? routeStages,
+    Product? Function()? product,
+  }) {
+    return AppState(
+      token: token ?? this.token,
+      routeStages: routeStages ?? this.routeStages,
+      product: product != null ? product() : this.product,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [
+        routeStages,
+        product,
+      ];
 }

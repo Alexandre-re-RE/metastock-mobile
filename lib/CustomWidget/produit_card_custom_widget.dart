@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:metastock/utils/constantes.dart';
 
-import '../const/style.dart';
 import '../model/product.dart';
 
 class ProduitCardCustomWidget extends StatelessWidget {
@@ -35,9 +35,9 @@ class ProduitCardCustomWidget extends StatelessWidget {
                   image: AssetImage("assets/image/metastock.png"),
                   height: 100,
                 ),
-                Text("Stock : ${product.stock} ", style: styleSmall),
-                Text("Price : ", style: styleSmall),
-                Text("${product.uniprice}\$", style: styleSmall),
+                Text("Stock : ${product.stock} ", style: Constantes.styleSmall),
+                Text("Price : ", style: Constantes.styleSmall),
+                Text("${product.uniprice}\$", style: Constantes.styleSmall),
               ],
             ),
             const SizedBox(

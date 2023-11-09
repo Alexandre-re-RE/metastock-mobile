@@ -5,10 +5,12 @@ class Constantes {
   static const TextStyle styleSmall = TextStyle(fontSize: 10);
   static const couleurPrincipale = Color(0xFF005DA5);
   static String apiUrl = "http://10.0.2.2:8080/metastock-rest-api/rest";
-  static String keyCloackAuthUrl = "https://metastock.alexandre.re:8443/realms/metastock/protocol/openid-connect/token";
+  static String keyCloackAuthUrl =
+      "https://metastock.alexandre.re:8443/realms/metastock/protocol/openid-connect/token";
   static String clientSecret = "MYyFte3ix2fjIyIv9XaN4CoO3oAQlD5x";
   static final box = GetStorage();
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   static void showSnackBar({required String info}) {
     ScaffoldMessenger.of(Constantes.navigatorKey.currentContext!).showSnackBar(

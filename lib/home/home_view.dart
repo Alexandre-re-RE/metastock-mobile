@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metastock/CustomWidget/ElevatedButtonCustom.dart';
+
+import '../app_cubit.dart';
+import '../services/route.dart';
 import '../utils/constantes.dart';
 
 class HomeView extends StatelessWidget {
@@ -7,6 +11,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppCubit appCubitRead = context.read<AppCubit>();
     return Stack(
       children: [
         const Padding(
@@ -18,11 +23,16 @@ class HomeView extends StatelessWidget {
               SizedBox(height: 100),
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Image(image: AssetImage("assets/image/metastock.png"), height: 100),
+                child: Image(
+                    image: AssetImage("assets/image/metastock.png"),
+                    height: 100),
               ),
               Text(
                 "MetaStock",
-                style: TextStyle(color: Constantes.couleurPrincipale, decoration: TextDecoration.none, fontSize: 35),
+                style: TextStyle(
+                    color: Constantes.couleurPrincipale,
+                    decoration: TextDecoration.none,
+                    fontSize: 35),
               ),
             ],
           ),
@@ -33,7 +43,11 @@ class HomeView extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: ElevatedButtonCustom(textButton: "Get Started"),
+                child: ElevatedButtonCustom(
+                  textButton: "Get Started",
+                  onPressed: () =>
+                      appCubitRead.changePage(RouteStages.LoginPage),
+                ),
               ),
             ],
           )
