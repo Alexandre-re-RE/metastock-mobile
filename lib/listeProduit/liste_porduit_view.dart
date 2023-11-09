@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:metastock/const/color.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../CustomWidget/mouvement_card_custom_widget.dart';
+import '../services/account_service.dart';
+import '../utils/constantes.dart';
 import 'cubit/liste_produit_cubit.dart';
 
 class ListeProduitView extends StatelessWidget {
@@ -17,19 +18,21 @@ class ListeProduitView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        ElevatedButton(
+          child: Icon(Icons.logout),
+          onPressed: () => AccountService.logout(),
+        ),
         Expanded(
           child: Container(
-            decoration: BoxDecoration(
-                color: couleurPrincipale.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Constantes.couleurPrincipale.withOpacity(0.2), borderRadius: BorderRadius.circular(10)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ToggleSwitch(
                 minWidth: 180.0,
                 cornerRadius: 5.0,
                 activeBgColors: const [
-                  [couleurPrincipale],
-                  [couleurPrincipale]
+                  [Constantes.couleurPrincipale],
+                  [Constantes.couleurPrincipale]
                 ],
                 activeFgColor: Colors.white,
                 inactiveBgColor: Colors.transparent,
@@ -47,11 +50,7 @@ class ListeProduitView extends StatelessWidget {
         ),
         Visibility(
           visible: cubitWatch.state.visibilityListePorduit,
-          child: Expanded(
-              flex: 9,
-              child: GridView.count(
-                  crossAxisCount: 2,
-                  children: cubitRead.generateRandomProductCards(18))),
+          child: Expanded(flex: 9, child: GridView.count(crossAxisCount: 2, children: cubitRead.generateRandomProductCards(18))),
         ),
         Visibility(
           visible: !cubitWatch.state.visibilityListePorduit,
