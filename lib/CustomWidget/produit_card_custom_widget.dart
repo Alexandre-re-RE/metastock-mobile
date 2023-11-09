@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:metastock/utils/constantes.dart';
 
-import '../model/product.dart';
-import '../utils/constantes.dart';
+import '../models/product.dart';
 
 class ProduitCardCustomWidget extends StatelessWidget {
   const ProduitCardCustomWidget({super.key, required this.product});
@@ -28,28 +28,37 @@ class ProduitCardCustomWidget extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Column(
-              children: [
-                const Image(
-                  image: AssetImage("assets/image/metastock.png"),
-                  height: 100,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: 1,
+                child: Column(
+                  children: [
+                    Image(
+                      image: NetworkImage("${product.picture}"),
+                      height: 100,
+                    ),
+                    Text("Stock : ${product.stock} ",
+                        style: Constantes.styleSmall),
+                    Text("Price : ", style: Constantes.styleSmall),
+                    Text("${product.unitprice}\$",
+                        style: Constantes.styleSmall),
+                  ],
                 ),
-                Text("Stock : " + product.stock.toString() + " ", style: Constantes.styleSmall),
-                Text("Price : ", style: Constantes.styleSmall),
-                Text(product.uniprice.toString() + "\$", style: Constantes.styleSmall),
-              ],
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Flexible(
-              flex: 1,
-              child: Text(
-                product.name,
               ),
-            )
-          ]),
+              // const SizedBox(
+              //   width: 5,
+              // ),
+              Flexible(
+                flex: 1,
+                child: Text(
+                  product.name ?? "",
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

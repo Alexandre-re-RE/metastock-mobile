@@ -4,7 +4,7 @@ import 'package:metastock/models/product.dart';
 import 'package:metastock/services/abstract_service.dart';
 
 class ProductService extends AbstractService {
-  Future<List<Product>> liste() async {
+  Future<List<Product>> listeDeProduit() async {
     List<Product> products = [];
     Response? response = await callApi(endpoint: "/products", method: "get");
     if (response?.data != null) {

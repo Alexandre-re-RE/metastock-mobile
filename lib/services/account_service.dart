@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +19,11 @@ class AccountService extends AbstractService {
         ),
         Constantes.keyCloackAuthUrl,
       );
+      print("response :");
       print(response);
 
       Constantes.box.write("token", jsonEncode(response.data));
+
       //print(Constantes.box.read("token"));
       return true;
     } on DioException catch (e) {
@@ -33,8 +34,48 @@ class AccountService extends AbstractService {
   }
 
   static void logout() {
+    print("token :");
+    print(Constantes.box.read("token"));
     Constantes.box.erase();
-    Navigator.of(Constantes.navigatorKey.currentContext!).pushReplacement(MaterialPageRoute(builder: (_) => const MyApp()));
+  }
+
+  Future<List<Account>> liste() async {
+    List<Account> accounts = [];
+    Response? response = await callApi(endpoint: "/accounts", method: "get");
+    if (response?.data != null) {
+      dynamic list = response!.data;
+      for (dynamic element in list) {
+        accounts.add(Account.fromJson(element));
+      }
+    }
+    return accounts;
+  }
+
+  Future<Account?> view(int idAccount) async {
+    Account? account;
+    Response? response = await callApi(endpoint: "/accounts/$idAccount", method: "get");
+    if (response?.data != null) {
+      account = Account.fromJson(response?.data);
+    }
+    return account;
+  }
+
+  Future<Account?> create(Account account) async {
+    Account? created;
+    Response? response = await callApi(endpoint: "/accounts", method: "post", formData: account.toJson());
+    if (response?.data != null) {
+      created = Account.fromJson(response?.data);
+    }
+    return created;
+  }
+
+  Future<Account?> update(Account account) async {
+    Account? updated;
+    Response? response = await callApi(endpoint: "/accounts", method: "put", formData: account.toJson());
+    if (response?.data != null) {
+      updated = Account.fromJson(response?.data);
+    }
+    return updated;
   }
 
   Future<List<Account>> liste() async {
