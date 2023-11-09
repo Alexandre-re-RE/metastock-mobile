@@ -36,23 +36,23 @@ class MouvementCardCustomWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text("07/11/2023"),
                   Text("GIGABYTE GEFORCE RTX 4070"),
                 ],
               ),
-              Icon(Icons.storefront),
+              const Icon(Icons.storefront),
               Visibility(
                 visible: typeMouvement == TypeMouvement.add ? true : false,
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
               ),
               Visibility(
                   visible:
                       typeMouvement == TypeMouvement.remouve ? true : false,
-                  child: Icon(Icons.remove)),
-              Text(quantity.toString(), style: TextStyle(fontSize: 25)),
+                  child: const Icon(Icons.remove)),
+              Text(quantity.toString(), style: const TextStyle(fontSize: 25)),
             ],
           ),
         ),

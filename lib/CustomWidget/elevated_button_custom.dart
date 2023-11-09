@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ElevatedButtonCustom extends StatelessWidget {
-  ElevatedButtonCustom({super.key, required this.textButton});
+  const ElevatedButtonCustom({super.key, required this.textButton});
 
-  String textButton;
+  final String textButton;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class ElevatedButtonCustom extends StatelessWidget {
         ),
         fixedSize: const Size(150, 60),
       ),
-      child:
-          Text(textButton, style: TextStyle(color: Colors.white, fontSize: 16)),
+      child: Text(textButton,
+          style: const TextStyle(color: Colors.white, fontSize: 16)),
     );
   }
 }

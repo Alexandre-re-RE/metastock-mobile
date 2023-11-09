@@ -13,7 +13,7 @@ class TextFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 250,
       child: TextField(
         obscureText: isPassword,
