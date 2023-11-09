@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:metastock/const/color.dart';
 
 import '../CustomWidget/ElevatedButtonCustom.dart';
+import '../utils/constantes.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -19,16 +19,11 @@ class HomeView extends StatelessWidget {
               SizedBox(height: 100),
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Image(
-                    image: AssetImage("assets/image/metastock.png"),
-                    height: 100),
+                child: Image(image: AssetImage("assets/image/metastock.png"), height: 100),
               ),
               Text(
                 "MetaStock",
-                style: TextStyle(
-                    color: couleurPrincipale,
-                    decoration: TextDecoration.none,
-                    fontSize: 35),
+                style: TextStyle(color: Constantes.couleurPrincipale, decoration: TextDecoration.none, fontSize: 35),
               ),
             ],
           ),
