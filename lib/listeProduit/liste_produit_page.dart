@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:metastock/CustomWidget/app_bar_custom.dart';
+import 'package:metastock/app_cubit.dart';
 import 'package:metastock/listeProduit/cubit/liste_produit_cubit.dart';
 import 'package:metastock/listeProduit/liste_porduit_view.dart';
 
@@ -14,7 +16,8 @@ class ListeProduitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScafoldWithBackground(
-      appBar: AppBar(),
+      appBar:
+          AppBarCustom(onPressed: () => context.read<AppCubit>().appLogout()),
       body: CustomWidgetBlackBackGround(
           widget: BlocProvider(
         create: (context) => ListeProduitCubit(),

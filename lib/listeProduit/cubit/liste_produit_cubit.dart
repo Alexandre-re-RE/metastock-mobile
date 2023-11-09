@@ -2,16 +2,18 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../../CustomWidget/mouvement_card_custom_widget.dart';
 import '../../CustomWidget/produit_card_custom_widget.dart';
 import '../../models/product.dart';
+import '../../services/product_service.dart';
 
 part 'liste_produit_state.dart';
 
 class ListeProduitCubit extends Cubit<ListeProduitState> {
-  ListeProduitCubit() : super(const ListeProduitState());
+  ListeProduitCubit() : super(const ListeProduitState()) {
+    changeListeProduit();
+  }
 
   void changeVisibility({required int index}) {
     if (index == 0) {
@@ -24,6 +26,14 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
         visibilityListePorduit: false,
       ));
     }
+  }
+
+  Future<void> changeListeProduit() async {
+    ProductService productService = ProductService();
+    List<Product> listeProduit = await productService.listeDeProduit();
+    emit(
+      state.copyWith(listProduit: listeProduit),
+    );
   }
 
   TypeMouvement getRandomTypeMouvement() {
@@ -40,7 +50,6 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
   int getRandomNumber() {
     // Crée une instance de Random
     final random = Random();
-
     // Génère un nombre aléatoire entre 0 (inclus) et 101 (exclus)
     return random.nextInt(101);
   }
@@ -48,15 +57,6 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
   // Fonction pour générer un Product avec des valeurs aléatoires
   Product generateRandomProduct() {
     final random = Random();
-    // return Product(
-    //   random.nextBool(),
-    //   'Description ${random.nextInt(1000)}',
-    //   'Product ${random.nextInt(1000)}',
-    //   'assets/image/metastock.png', // Suppose que vous avez une image par défaut
-    //   random.nextInt(100),
-    //   random.nextInt(10),
-    //   random.nextInt(500) + 1, // +1 pour éviter un prix de 0
-    // );
     return Product(
         random.nextBool(),
         random.nextInt(100),
@@ -72,5 +72,12 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
   List<ProduitCardCustomWidget> generateRandomProductCards(int count) {
     return List.generate(count,
         (index) => ProduitCardCustomWidget(product: generateRandomProduct()));
+  }
+
+  List<ProduitCardCustomWidget> generateProductCards() {
+    List<Product> products = state.listProduit;
+    return products
+        .map((product) => ProduitCardCustomWidget(product: product))
+        .toList();
   }
 }

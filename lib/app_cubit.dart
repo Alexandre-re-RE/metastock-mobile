@@ -4,7 +4,7 @@ import 'package:metastock/services/account_service.dart';
 import 'package:metastock/services/route.dart';
 import 'package:metastock/utils/constantes.dart';
 
-import 'model/product.dart';
+import 'models/product.dart';
 import 'models/token.dart';
 
 part 'app_state.dart';

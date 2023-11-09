@@ -15,14 +15,11 @@ class ListeProduitView extends StatelessWidget {
     ListeProduitCubit cubitWatch = context.watch<ListeProduitCubit>();
     ListeProduitCubit cubitRead = context.read<ListeProduitCubit>();
     AppCubit appCubitRead = context.read<AppCubit>();
+    GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        ElevatedButton(
-          child: Icon(Icons.logout),
-          onPressed: () => appCubitRead.appLogout(),
-        ),
         Expanded(
           child: Container(
             decoration: BoxDecoration(
@@ -55,9 +52,17 @@ class ListeProduitView extends StatelessWidget {
           visible: cubitWatch.state.visibilityListePorduit,
           child: Expanded(
               flex: 9,
-              child: GridView.count(
-                  crossAxisCount: 2,
-                  children: cubitRead.generateRandomProductCards(18))),
+              child: RefreshIndicator(
+                key: _refreshIndicatorKey,
+                onRefresh: () async {
+                  cubitRead.changeListeProduit();
+                  await Future.delayed(Duration(seconds: 1));
+                  _refreshIndicatorKey.currentState!.show();
+                },
+                child: GridView.count(
+                    crossAxisCount: 2,
+                    children: cubitRead.generateProductCards()),
+              )),
         ),
         Visibility(
           visible: !cubitWatch.state.visibilityListePorduit,
