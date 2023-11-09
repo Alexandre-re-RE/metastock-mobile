@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metastock/CustomWidget/ElevatedButtonCustom.dart';
-import 'package:metastock/listeProduit/liste_produit_page.dart';
-import 'package:metastock/services/account_service.dart';
+import 'package:metastock/login/cubit/login_cubit.dart';
 
 import '../CustomWidget/text_field_custom.dart';
+import '../app_cubit.dart';
 import '../utils/constantes.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
-  Future<void> login({required String username, required String password}) async {
-    AccountService service = AccountService();
-    bool loggedSuccesful = await service.login(username: username, password: password);
-    if (loggedSuccesful) {
-      Navigator.of(Constantes.navigatorKey.currentContext!).pushReplacement(MaterialPageRoute(builder: (_) => const ListeProduitPage()));
-    }
-    Constantes.showSnackBar(info: "Iddentifiants incorrect");
-  }
-
   @override
   Widget build(BuildContext context) {
-    TextEditingController controllerUsername = TextEditingController();
-    TextEditingController controllerPassword = TextEditingController();
+    LoginCubit cubitWatch = context.watch<LoginCubit>();
+    LoginCubit cubitRead = context.read<LoginCubit>();
+    AppCubit appCubitRead = context.read<AppCubit>();
 
     return Stack(
       children: [
@@ -36,22 +29,25 @@ class LoginView extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   "MetaStock",
-                  style: TextStyle(color: Constantes.couleurPrincipale, decoration: TextDecoration.none, fontSize: 35),
+                  style: TextStyle(
+                      color: Constantes.couleurPrincipale,
+                      decoration: TextDecoration.none,
+                      fontSize: 35),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFieldCustom(
+                  onChanged: (value) => cubitRead.onChangeUsername(value),
                   labelText: "Username",
-                  controller: controllerUsername,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFieldCustom(
+                  onChanged: (value) => cubitRead.onChangePassword(value),
                   labelText: "Password",
-                  isPassword: true,
-                  controller: controllerPassword,
+                  isPassword: false,
                 ),
               ),
             ],
@@ -66,7 +62,11 @@ class LoginView extends StatelessWidget {
                 child: ElevatedButtonCustom(
                   textButton: "Connexion",
                   onPressed: () {
-                    login(username: controllerUsername.text, password: controllerPassword.text);
+                    appCubitRead.login(
+                      appCubit: appCubitRead,
+                      username: cubitWatch.state.username,
+                      password: cubitWatch.state.password,
+                    );
                   },
                 ),
               ),
