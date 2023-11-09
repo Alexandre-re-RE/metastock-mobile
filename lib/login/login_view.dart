@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:metastock/CustomWidget/ElevatedButtonCustom.dart';
+import 'package:metastock/CustomWidget/elevated_button_custom.dart';
 import 'package:metastock/listeProduit/liste_produit_page.dart';
 import 'package:metastock/services/account_service.dart';
 
-import '../CustomWidget/TextFieldCustom.dart';
+import '../CustomWidget/text_field_custom.dart';
 import '../utils/constantes.dart';
 
 class LoginView extends StatelessWidget {
@@ -24,7 +24,7 @@ class LoginView extends StatelessWidget {
     TextEditingController controllerUsername = TextEditingController();
     TextEditingController controllerPassword = TextEditingController();
 
-    return Stack(
+    return const Stack(
       children: [
         Padding(
           padding: const EdgeInsets.all(20.0),

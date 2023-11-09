@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-import '../CustomWidget/MouvementCardCustomWidget.dart';
+import '../CustomWidget/mouvement_card_custom_widget.dart';
 import '../services/account_service.dart';
 import '../utils/constantes.dart';
 import 'cubit/liste_produit_cubit.dart';
 
 class ListeProduitView extends StatelessWidget {
-  ListeProduitView({Key? key}) : super(key: key);
+  const ListeProduitView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class ListeProduitView extends StatelessWidget {
                 inactiveFgColor: Colors.white,
                 initialLabelIndex: 0,
                 totalSwitches: 2,
-                labels: ['Liste des Produit', 'Liste des mouvement'],
+                labels: const ['Liste des Produit', 'Liste des mouvement'],
                 radiusStyle: true,
                 onToggle: (index) {
                   cubitRead.changeVisibility(index: index ?? 1);

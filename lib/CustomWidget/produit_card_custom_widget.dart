@@ -5,7 +5,7 @@ import '../model/product.dart';
 import '../utils/constantes.dart';
 
 class ProduitCardCustomWidget extends StatelessWidget {
-  const ProduitCardCustomWidget({required this.product});
+  const ProduitCardCustomWidget({super.key, required this.product});
   final Product product;
 
   @override

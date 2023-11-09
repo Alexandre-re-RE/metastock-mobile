@@ -17,6 +17,7 @@ class ListeProduitState extends Equatable {
     );
   }
 
+  @override
   List<Object> get props => [
         visibilityListePorduit,
       ];
