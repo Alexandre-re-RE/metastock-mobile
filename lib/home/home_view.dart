@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-
-import '../CustomWidget/elevated_button_custom.dart';
+import 'package:metastock/CustomWidget/ElevatedButtonCustom.dart';
 import '../utils/constantes.dart';
-import '../CustomWidget/elevated_button_custom.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Stack(
+    return Stack(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +32,7 @@ class HomeView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: ElevatedButtonCustom(textButton: "Get Started"),
               ),
             ],
