@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../CustomWidget/mouvement_card_custom_widget.dart';
 import '../../CustomWidget/produit_card_custom_widget.dart';
-import '../../model/product.dart';
+import '../../models/product.dart';
 
 part 'liste_produit_state.dart';
 
@@ -48,15 +48,24 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
   // Fonction pour générer un Product avec des valeurs aléatoires
   Product generateRandomProduct() {
     final random = Random();
+    // return Product(
+    //   random.nextBool(),
+    //   'Description ${random.nextInt(1000)}',
+    //   'Product ${random.nextInt(1000)}',
+    //   'assets/image/metastock.png', // Suppose que vous avez une image par défaut
+    //   random.nextInt(100),
+    //   random.nextInt(10),
+    //   random.nextInt(500) + 1, // +1 pour éviter un prix de 0
+    // );
     return Product(
-      random.nextBool(),
-      'Description ${random.nextInt(1000)}',
-      'Product ${random.nextInt(1000)}',
-      'assets/image/metastock.png', // Suppose que vous avez une image par défaut
-      random.nextInt(100),
-      random.nextInt(10),
-      random.nextInt(500) + 1, // +1 pour éviter un prix de 0
-    );
+        random.nextBool(),
+        random.nextInt(100),
+        random.nextInt(100),
+        'Description ${random.nextInt(1000)}',
+        'Product ${random.nextInt(1000)}',
+        'assets/image/metastock.png',
+        random.nextInt(500) + 1,
+        random.nextInt(100));
   }
 
 // Fonction pour générer une liste de ProduitCardCustomWidget avec des Products aléatoires
