@@ -7,7 +7,31 @@ import 'package:metastock/utils/constantes.dart';
 import 'account_service.dart';
 
 abstract class AbstractService {
-  void treatResponse(Response? response) {
+  Future<Response?> callApi({required String endpoint, required String method, Map<String, dynamic>? queries, Map<String, dynamic>? formData}) async {
+    String bearer = "";
+
+    if (Constantes.box.hasData("token")) {
+      Map<String, dynamic> token = jsonDecode(Constantes.box.read("token"));
+      bearer = token["access_token"];
+    }
+
+    Response? response;
+    try {
+      response = await Dio().request(
+        data: formData,
+        options: Options(
+          method: method,
+          headers: {"Authorization": "Bearer $bearer"},
+          contentType: ContentType.json.toString(),
+          responseType: ResponseType.json,
+        ),
+        "${Constantes.apiUrl}$endpoint",
+        queryParameters: queries,
+      );
+    } on DioException catch (e) {
+      response = e.response;
+    }
+
     if (response != null) {
       switch (response.statusCode) {
         case 401:
@@ -27,44 +51,7 @@ abstract class AbstractService {
           break;
       }
     }
-  }
-
-  String getBearer() {
-    String bearer = "";
-
-    if (Constantes.box.hasData("token")) {
-      Map<String, dynamic> token = jsonDecode(Constantes.box.read("token"));
-      bearer = token["access_token"];
-    }
-
-    return bearer;
-  }
-
-  Future<Response?> get({required String endpoint, Map<String, dynamic>? queries}) async {
-    Response? response;
-    try {
-      response = await Dio().get(
-        options: Options(
-          headers: {"Authorization": "Bearer ${getBearer()}"},
-          contentType: ContentType.json.toString(),
-          responseType: ResponseType.json,
-        ),
-        "${Constantes.apiUrl}$endpoint",
-        queryParameters: queries,
-      );
-    } on DioException catch (e) {
-      response = e.response;
-      treatResponse(response);
-    }
 
     return response;
   }
-
-  Future<void> put() async {}
-
-  Future<void> post() async {}
-
-  Future<void> delete() async {}
-
-  Future<void> callApi() async {}
 }
