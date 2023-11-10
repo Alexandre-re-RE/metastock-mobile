@@ -15,7 +15,7 @@ class ListeProduitView extends StatelessWidget {
     ListeProduitCubit cubitWatch = context.watch<ListeProduitCubit>();
     ListeProduitCubit cubitRead = context.read<ListeProduitCubit>();
     AppCubit appCubitRead = context.read<AppCubit>();
-    GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey();
+
     cubitRead.changeListeProduit();
 
     return Column(
@@ -49,6 +49,9 @@ class ListeProduitView extends StatelessWidget {
             ),
           ),
         ),
+        ElevatedButton(
+            onPressed: () => cubitRead.changeListeProduit(),
+            child: Icon(Icons.refresh)),
         Visibility(
           visible: cubitWatch.state.visibilityListePorduit,
           child: Expanded(
@@ -56,18 +59,9 @@ class ListeProduitView extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: RefreshIndicator(
-                      key: _refreshIndicatorKey,
-                      onRefresh: () async {
-                        cubitRead.changeListeProduit();
-                        await Future.delayed(Duration(seconds: 1));
-                        _refreshIndicatorKey.currentState!.show();
-                      },
-                      child: GridView.count(
-                          crossAxisCount: 2,
-                          children:
-                              cubitRead.generateProductCards(appCubitRead)),
-                    ),
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        children: cubitRead.generateProductCards(appCubitRead)),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

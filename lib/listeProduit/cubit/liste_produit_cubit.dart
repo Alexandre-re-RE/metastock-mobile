@@ -14,7 +14,7 @@ part 'liste_produit_state.dart';
 
 class ListeProduitCubit extends Cubit<ListeProduitState> {
   ListeProduitCubit() : super(const ListeProduitState()) {
-    changeListeProduit();
+    // changeListeProduit();
   }
 
   ProductService service = ProductService();
@@ -93,8 +93,15 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
   }
 
   void createPorduct() {
-    Product product = Product(false, 0, 0, "New Product : description",
-        "New Product : name", "New Product : picture url", 0, 0);
+    Product product = Product(
+        false,
+        0,
+        0,
+        "New Product : description",
+        "New Product : name",
+        "https://cdn.vectorstock.com/i/1000x1000/98/14/empty-photo-frame-on-transparent-background-vector-20569814.webp",
+        0,
+        0);
     service.create(product);
   }
 }
