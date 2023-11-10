@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metastock/CustomWidget/app_bar_custom.dart';
+import 'package:metastock/produit/cubit/produit_cubit.dart';
 import 'package:metastock/produit/produit_view.dart';
 
 import '../CustomWidget/dark_background_custom_widget.dart';
@@ -15,6 +16,7 @@ class ProduitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppCubit AppCubitRead = context.read<AppCubit>();
+
     return WillPopScope(
       onWillPop: () async {
         AppCubitRead.changeProduitSelect();
@@ -22,7 +24,12 @@ class ProduitPage extends StatelessWidget {
       },
       child: ScafoldWithBackground(
           appBar: AppBarCustom(onPressed: () => AppCubitRead.appLogout()),
-          body: const CustomWidgetBlackBackGround(widget: ProduitView())),
+          body: CustomWidgetBlackBackGround(
+              widget: BlocProvider(
+                  create: (context) => ProduitCubit(
+                      appCubit: AppCubitRead,
+                      product: AppCubitRead.state.product!),
+                  child: ProduitView()))),
     );
   }
 }

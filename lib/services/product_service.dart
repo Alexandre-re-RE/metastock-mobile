@@ -18,7 +18,8 @@ class ProductService extends AbstractService {
 
   Future<Product?> view(int idProduct) async {
     Product? product;
-    Response? response = await callApi(endpoint: "/products/$idProduct", method: "get");
+    Response? response =
+        await callApi(endpoint: "/products/$idProduct", method: "get");
     if (response?.data != null) {
       product = Product.fromJson(response?.data);
     }
@@ -27,7 +28,8 @@ class ProductService extends AbstractService {
 
   Future<Product?> create(Product product) async {
     Product? created;
-    Response? response = await callApi(endpoint: "/products", method: "post", formData: product.toJson());
+    Response? response = await callApi(
+        endpoint: "/products", method: "post", formData: product.toJson());
     if (response?.data != null) {
       created = Product.fromJson(response?.data);
     }
@@ -36,7 +38,12 @@ class ProductService extends AbstractService {
 
   Future<Product?> update(Product product) async {
     Product? updated;
-    Response? response = await callApi(endpoint: "/products", method: "put", formData: product.toJson());
+    Response? response = await callApi(
+        endpoint: "/products/${product.id}",
+        method: "put",
+        formData: product.toJson());
+    print("response?.data :");
+    print(response?.data);
     if (response?.data != null) {
       updated = Product.fromJson(response?.data);
     }
@@ -45,7 +52,8 @@ class ProductService extends AbstractService {
 
   Future<List<Movement>> movements(int idProduct) async {
     List<Movement> movements = [];
-    Response? response = await callApi(endpoint: "/products/$idProduct/movements", method: "get");
+    Response? response = await callApi(
+        endpoint: "/products/$idProduct/movements", method: "get");
     if (response?.data != null) {
       dynamic list = response!.data;
       for (dynamic element in list) {
