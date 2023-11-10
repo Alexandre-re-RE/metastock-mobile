@@ -7,7 +7,7 @@ class ProductService extends AbstractService {
   Future<List<Product>> listeDeProduit() async {
     List<Product> products = [];
     Response? response = await callApi(endpoint: "/products", method: "get");
-    if (response?.data != null) {
+    if (response?.data != null && response?.data is List) {
       dynamic list = response!.data;
       for (dynamic element in list) {
         products.add(Product.fromJson(element));
@@ -27,9 +27,14 @@ class ProductService extends AbstractService {
   }
 
   Future<Product?> create(Product product) async {
+    Map<String, dynamic> formData = product.toJson();
+    formData.remove("id");
+    print(product.name);
+    print(product.toJson().remove("id"));
     Product? created;
     Response? response = await callApi(
-        endpoint: "/products", method: "post", formData: product.toJson());
+        endpoint: "/products", method: "post", formData: formData);
+
     if (response?.data != null) {
       created = Product.fromJson(response?.data);
     }

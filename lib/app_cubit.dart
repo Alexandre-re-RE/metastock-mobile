@@ -49,8 +49,15 @@ class AppCubit extends Cubit<AppState> {
       Constantes.showSnackBar(info: "Iddentifiants incorrect");
       return;
     }
-    emit(state.copyWith(
-        routeStages: RouteStages.ListeProduitPage,
-        token: Token(token: Constantes.box.read("token"))));
+    if (loggedSuccesful) {
+      emit(
+        state.copyWith(
+          routeStages: RouteStages.ListeProduitPage,
+          token: Token(
+            token: Constantes.box.read("token"),
+          ),
+        ),
+      );
+    }
   }
 }
