@@ -17,6 +17,8 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
     changeListeProduit();
   }
 
+  ProductService service = ProductService();
+
   void changeVisibility({required int index}) {
     if (index == 0) {
       emit(state.copyWith(
@@ -88,5 +90,11 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
               onTap: () => context.changeProduitSelect(product: product),
             ))
         .toList();
+  }
+
+  void createPorduct() {
+    Product product = Product(false, 0, 0, "New Product : description",
+        "New Product : name", "New Product : picture url", 0, 0);
+    service.create(product);
   }
 }

@@ -53,16 +53,37 @@ class ListeProduitView extends StatelessWidget {
           visible: cubitWatch.state.visibilityListePorduit,
           child: Expanded(
               flex: 9,
-              child: RefreshIndicator(
-                key: _refreshIndicatorKey,
-                onRefresh: () async {
-                  cubitRead.changeListeProduit();
-                  await Future.delayed(Duration(seconds: 1));
-                  _refreshIndicatorKey.currentState!.show();
-                },
-                child: GridView.count(
-                    crossAxisCount: 2,
-                    children: cubitRead.generateProductCards(appCubitRead)),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: RefreshIndicator(
+                      key: _refreshIndicatorKey,
+                      onRefresh: () async {
+                        cubitRead.changeListeProduit();
+                        await Future.delayed(Duration(seconds: 1));
+                        _refreshIndicatorKey.currentState!.show();
+                      },
+                      child: GridView.count(
+                          crossAxisCount: 2,
+                          children:
+                              cubitRead.generateProductCards(appCubitRead)),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      fixedSize: const Size(150, 60),
+                    ),
+                    onPressed: () {
+                      cubitRead.createPorduct();
+                    },
+                    child: const Text('New Product'),
+                  ),
+                ],
               )),
         ),
         Visibility(

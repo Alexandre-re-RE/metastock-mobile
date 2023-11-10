@@ -42,8 +42,6 @@ class ProductService extends AbstractService {
         endpoint: "/products/${product.id}",
         method: "put",
         formData: product.toJson());
-    print("response?.data :");
-    print(response?.data);
     if (response?.data != null) {
       updated = Product.fromJson(response?.data);
     }
