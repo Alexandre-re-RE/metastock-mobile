@@ -26,6 +26,12 @@ class AppCubit extends Cubit<AppState> {
     emit(state.copyWith(token: token));
   }
 
+  void changeProduitSelect({Product? product}) {
+    emit(state.copyWith(
+      product: () => product,
+    ));
+  }
+
   Future<void> appLogout() async {
     emit(state.copyWith(
         token: Token(token: ""), routeStages: RouteStages.LoginPage));

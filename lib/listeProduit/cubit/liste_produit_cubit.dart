@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:metastock/app_cubit.dart';
 
 import '../../CustomWidget/mouvement_card_custom_widget.dart';
 import '../../CustomWidget/produit_card_custom_widget.dart';
@@ -70,14 +72,21 @@ class ListeProduitCubit extends Cubit<ListeProduitState> {
 
 // Fonction pour générer une liste de ProduitCardCustomWidget avec des Products aléatoires
   List<ProduitCardCustomWidget> generateRandomProductCards(int count) {
-    return List.generate(count,
-        (index) => ProduitCardCustomWidget(product: generateRandomProduct()));
+    return List.generate(
+        count,
+        (index) => ProduitCardCustomWidget(
+              product: generateRandomProduct(),
+              onTap: () {},
+            ));
   }
 
-  List<ProduitCardCustomWidget> generateProductCards() {
+  List<ProduitCardCustomWidget> generateProductCards(AppCubit context) {
     List<Product> products = state.listProduit;
     return products
-        .map((product) => ProduitCardCustomWidget(product: product))
+        .map((product) => ProduitCardCustomWidget(
+              product: product,
+              onTap: () => context.changeProduitSelect(product: product),
+            ))
         .toList();
   }
 }
