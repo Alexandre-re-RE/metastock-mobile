@@ -26,7 +26,10 @@ class MovementService extends AbstractService {
 
   Future<Movement?> create(Movement movement) async {
     Movement? created;
-    Response? response = await callApi(endpoint: "/movements", method: "post", formData: movement.toJson().remove("id"));
+    Map<String, dynamic> formData = movement.toJson();
+    formData.remove("id");
+
+    Response? response = await callApi(endpoint: "/movements", method: "post", formData: formData);
     if (response?.data != null) {
       created = Movement.fromJson(response?.data);
     }

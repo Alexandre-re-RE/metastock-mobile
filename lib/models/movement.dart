@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:metastock/models/product.dart';
 
 part 'movement.g.dart';
 
@@ -6,9 +7,9 @@ part 'movement.g.dart';
 class Movement {
   final int id;
   final int quantity;
-  final bool archive;
   final String? comment;
   final String? date;
+  final Product product;
 
   @JsonKey(name: "product_id")
   final int productId;
@@ -19,7 +20,7 @@ class Movement {
   @JsonKey(name: "movement_type")
   final String movementType;
 
-  Movement(this.archive, this.id, this.quantity, this.comment, this.date, this.productId, this.accountId, this.movementType);
+  Movement(this.id, this.quantity, this.comment, this.date, this.productId, this.accountId, this.movementType, this.product);
 
   /// Connect the generated [_$MovementFromJson] function to the `fromJson`
   /// factory.
