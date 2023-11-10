@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:metastock/login/login_page.dart';
-import 'package:metastock/main.dart';
 import 'package:metastock/models/account.dart';
 import 'package:metastock/services/abstract_service.dart';
 
@@ -62,7 +59,7 @@ class AccountService extends AbstractService {
 
   Future<Account?> create(Account account) async {
     Account? created;
-    Response? response = await callApi(endpoint: "/accounts", method: "post", formData: account.toJson().remove("id"));
+    Response? response = await callApi(endpoint: "/accounts", method: "post", formData: account.toJson());
     if (response?.data != null) {
       created = Account.fromJson(response?.data);
     }
@@ -71,7 +68,7 @@ class AccountService extends AbstractService {
 
   Future<Account?> update(Account account) async {
     Account? updated;
-    Response? response = await callApi(endpoint: "/accounts", method: "put", formData: account.toJson());
+    Response? response = await callApi(endpoint: "/accounts/${account.id}", method: "put", formData: account.toJson());
     if (response?.data != null) {
       updated = Account.fromJson(response?.data);
     }

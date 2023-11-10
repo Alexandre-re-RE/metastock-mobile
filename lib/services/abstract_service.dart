@@ -7,7 +7,11 @@ import 'package:metastock/utils/constantes.dart';
 import 'account_service.dart';
 
 abstract class AbstractService {
-  Future<Response?> callApi({required String endpoint, required String method, Map<String, dynamic>? queries, Map<String, dynamic>? formData}) async {
+  Future<Response?> callApi(
+      {required String endpoint,
+      required String method,
+      Map<String, dynamic>? queries,
+      Map<String, dynamic>? formData}) async {
     String bearer = "";
 
     if (Constantes.box.hasData("token")) {
@@ -36,17 +40,21 @@ abstract class AbstractService {
       switch (response.statusCode) {
         case 401:
           AccountService.logout();
-          Constantes.showSnackBar(info: "Session expirée veuillez vous reconnecter (401)");
+          Constantes.showSnackBar(
+              info: "Session expirée veuillez vous reconnecter (401)");
           break;
         case 403:
-          Constantes.showSnackBar(info: "Vous ne disposez pas d'autorisation nécessaire pour réaliser cette action (403)");
+          Constantes.showSnackBar(
+              info:
+                  "Vous ne disposez pas d'autorisation nécessaire pour réaliser cette action (403)");
           break;
         case 500:
           Constantes.showSnackBar(info: "Erreur serveur (500)");
           break;
         default:
           if (response.statusCode! >= 300 && response.statusCode != 304) {
-            Constantes.showSnackBar(info: " ${response.statusMessage} (${response.statusCode})");
+            Constantes.showSnackBar(
+                info: " ${response.statusMessage} (${response.statusCode})");
           }
           break;
       }
