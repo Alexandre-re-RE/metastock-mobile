@@ -114,6 +114,24 @@ class ProduitView extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
+                        const Text("  Description",
+                            style: TextStyle(color: Colors.white)),
+                        Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: TextField(
+                              onChanged: (value) =>
+                                  cubitRead.changeDescription(value),
+                              decoration: InputDecoration(
+                                  hintText:
+                                      appCubitRead.state.product?.description ??
+                                          ""),
+                              maxLines: 3,
+                            )),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         const Text('  Threshold',
                             style: TextStyle(color: Colors.white)),
                         Container(
