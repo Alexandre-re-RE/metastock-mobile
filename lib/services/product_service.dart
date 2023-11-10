@@ -27,7 +27,7 @@ class ProductService extends AbstractService {
 
   Future<Product?> create(Product product) async {
     Product? created;
-    Response? response = await callApi(endpoint: "/products", method: "post", formData: product.toJson());
+    Response? response = await callApi(endpoint: "/products", method: "post", formData: product.toJson().remove("id"));
     if (response?.data != null) {
       created = Product.fromJson(response?.data);
     }

@@ -62,7 +62,7 @@ class AccountService extends AbstractService {
 
   Future<Account?> create(Account account) async {
     Account? created;
-    Response? response = await callApi(endpoint: "/accounts", method: "post", formData: account.toJson());
+    Response? response = await callApi(endpoint: "/accounts", method: "post", formData: account.toJson().remove("id"));
     if (response?.data != null) {
       created = Account.fromJson(response?.data);
     }
