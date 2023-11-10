@@ -1,19 +1,24 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:metastock/login/login_page.dart';
-import 'package:metastock/main.dart';
 import 'package:metastock/models/account.dart';
 import 'package:metastock/services/abstract_service.dart';
 
 import '../utils/constantes.dart';
 
 class AccountService extends AbstractService {
-  Future<bool> login({required String username, required String password}) async {
+  Future<bool> login(
+      {required String username, required String password}) async {
     try {
       Response response = await Dio().post(
-        data: {"grant_type": "password", "client_id": "api", "client_secret": Constantes.clientSecret, "scope": "openid", "username": username, "password": password},
+        data: {
+          "grant_type": "password",
+          "client_id": "api",
+          "client_secret": Constantes.clientSecret,
+          "scope": "openid",
+          "username": username,
+          "password": password
+        },
         options: Options(
           contentType: "application/x-www-form-urlencoded",
         ),
@@ -27,7 +32,8 @@ class AccountService extends AbstractService {
       //print(Constantes.box.read("token"));
       return true;
     } on DioException catch (e) {
-      Constantes.showSnackBar(info: "${e.response?.statusMessage} ${e.response?.statusCode}");
+      Constantes.showSnackBar(
+          info: "${e.response?.statusMessage} ${e.response?.statusCode}");
     }
 
     return false;
@@ -53,7 +59,8 @@ class AccountService extends AbstractService {
 
   Future<Account?> view(int idAccount) async {
     Account? account;
-    Response? response = await callApi(endpoint: "/accounts/$idAccount", method: "get");
+    Response? response =
+        await callApi(endpoint: "/accounts/$idAccount", method: "get");
     if (response?.data != null) {
       account = Account.fromJson(response?.data);
     }
@@ -62,7 +69,8 @@ class AccountService extends AbstractService {
 
   Future<Account?> create(Account account) async {
     Account? created;
-    Response? response = await callApi(endpoint: "/accounts", method: "post", formData: account.toJson());
+    Response? response = await callApi(
+        endpoint: "/accounts", method: "post", formData: account.toJson());
     if (response?.data != null) {
       created = Account.fromJson(response?.data);
     }
@@ -71,7 +79,10 @@ class AccountService extends AbstractService {
 
   Future<Account?> update(Account account) async {
     Account? updated;
-    Response? response = await callApi(endpoint: "/accounts", method: "put", formData: account.toJson());
+    Response? response = await callApi(
+        endpoint: "/accounts/${account.id}",
+        method: "put",
+        formData: account.toJson());
     if (response?.data != null) {
       updated = Account.fromJson(response?.data);
     }

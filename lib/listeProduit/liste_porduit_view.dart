@@ -16,6 +16,7 @@ class ListeProduitView extends StatelessWidget {
     ListeProduitCubit cubitRead = context.read<ListeProduitCubit>();
     AppCubit appCubitRead = context.read<AppCubit>();
     GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey();
+    cubitRead.changeListeProduit();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: BlocProvider(
-          create: (BuildContext context) => AppCubit(), child: RouteFlow()),
+          create: (BuildContext context) => AppCubit(),
+          child: const RouteFlow()),
     );
   }
 }
